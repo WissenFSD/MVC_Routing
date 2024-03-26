@@ -1,0 +1,45 @@
+using Microsoft.AspNetCore.Mvc;
+using MVC_Routing.Models;
+using System.Diagnostics;
+
+namespace MVC_Routing.Controllers
+{
+	public class HomeController : Controller
+	{
+		private readonly ILogger<HomeController> _logger;
+
+		public HomeController(ILogger<HomeController> logger)
+		{
+			_logger = logger;
+		}
+
+		public IActionResult Index()
+		{
+			return View();
+		}
+
+		public IActionResult Privacy()
+		{
+			return View();
+		}
+		public IActionResult Test()
+		{
+			return View();
+		}
+
+		// Routing istenilirse, direk olarak action'un üzerine de verilebilir. Örnekte söz konusu action Home/Insert olmasýna raðmen
+		// Browser üzerinden Kayit yazýlarak direk olarak bu action'a yönlenebilir.
+		[Route("Kayit")]
+		public IActionResult Insert()
+		{
+			return View();
+		}
+		
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		public IActionResult Error()
+		{
+			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+	}
+}
